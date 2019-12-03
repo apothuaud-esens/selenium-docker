@@ -6,4 +6,4 @@ COPY . /usr/app
 
 RUN ["mvn", "clean", "install", "-DskipTests=true"]
 
-RUN ["sh", "entrypoint.sh"]
+ENTRYPOINT ["sh", "entrypoint.sh"]
