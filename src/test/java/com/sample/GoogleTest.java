@@ -1,17 +1,25 @@
 package com.sample;
 
-import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.Test;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.remote.RemoteWebDriver;
+
+import java.net.MalformedURLException;
+import java.net.URL;
 
 public class GoogleTest {
 
     @Test
-    public void sampleTest1(){
+    public void sampleTest1() throws MalformedURLException {
 
-        WebDriverManager.chromedriver().setup();
-        WebDriver driver = new ChromeDriver();
+        DesiredCapabilities capabilities = new DesiredCapabilities();
+        capabilities.setBrowserName("chrome");
+        String hubUrl = "http://" + System.getProperty("SELENIUM_HUB") + ":4444/wd/hub";
+        System.out.println("*********************************************\nHUB URL : " + hubUrl + "\n*********************************************\n");
+        WebDriver driver = new RemoteWebDriver(new URL(hubUrl), capabilities);
         GooglePage.open(driver);
         GooglePage.searchSomething(driver, "Selenium automation");
         assert GooglePage.primaryResultsContainsLinkTo(driver, "https://selenium.dev/");
@@ -19,10 +27,13 @@ public class GoogleTest {
     }
 
     @Test
-    public void sampleTest2(){
+    public void sampleTest2() throws MalformedURLException {
 
-        WebDriverManager.chromedriver().setup();
-        WebDriver driver = new ChromeDriver();
+        DesiredCapabilities capabilities = new DesiredCapabilities();
+        capabilities.setBrowserName("firefox");
+        String hubUrl = "http://" + System.getProperty("SELENIUM_HUB") + ":4444/wd/hub";
+        System.out.println("*********************************************\nHUB URL : " + hubUrl + "\n*********************************************\n");
+        WebDriver driver = new RemoteWebDriver(new URL(hubUrl), capabilities);;
         GooglePage.open(driver);
         GooglePage.searchSomething(driver, "Maven repository");
         assert GooglePage.primaryResultsContainsLinkTo(driver, "https://mvnrepository.com/");
