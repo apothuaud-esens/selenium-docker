@@ -15,8 +15,7 @@ public class GoogleTest {
     @Test
     public void sampleTest1() throws MalformedURLException {
 
-        DesiredCapabilities capabilities = new DesiredCapabilities();
-        capabilities.setBrowserName("chrome");
+        DesiredCapabilities capabilities = DesiredCapabilities.chrome();
         String hubUrl = "http://" + System.getenv("SELENIUM_HUB") + ":4444/wd/hub";
         System.out.println("*********************************************\nHUB URL : " + hubUrl + "\n*********************************************\n");
         WebDriver driver = new RemoteWebDriver(new URL(hubUrl), capabilities);
@@ -29,8 +28,7 @@ public class GoogleTest {
     @Test
     public void sampleTest2() throws MalformedURLException {
 
-        DesiredCapabilities capabilities = new DesiredCapabilities();
-        capabilities.setBrowserName("chrome");
+        DesiredCapabilities capabilities = DesiredCapabilities.chrome();
         String hubUrl = "http://" + System.getenv("SELENIUM_HUB") + ":4444/wd/hub";
         System.out.println("*********************************************\nHUB URL : " + hubUrl + "\n*********************************************\n");
         WebDriver driver = new RemoteWebDriver(new URL(hubUrl), capabilities);;
